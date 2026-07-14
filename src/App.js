@@ -1,30 +1,33 @@
 import Keypad from "./Keypad.js";
 import './App.css';
 import { useState } from "react";
+import { evaluate } from "mathjs";
 
-function App(){
-
+function App() {
   const [input, setInput] = useState("");
-  function handleClick(value){
 
-setInput(input + value)
-
+  function handleClick(value) {
+    setInput(prevInput => prevInput + value);
   }
 
-function calculate(value){
+  function calculate() {
+    if (!input.trim()) {
+      return;
+    }
 
-let outputVal = eval(input)
-setInput(outputVal)
+    try {
+      const outputVal = evaluate(input);
+      setInput(String(outputVal));
+    } catch (error) {
+      setInput("Error");
+    }
+  }
 
-}
-function handleClear(){
+  function handleClear() {
+    setInput("");
+  }
 
-setInput("")
-
-}
-// eslint-disable-next-line no-eval
-// const result = eval(input);
-   return (
+  return (
     <div className="container">
       <h1>Calculator App Using React</h1>
 
