@@ -22,15 +22,22 @@ function handleClear(){
 setInput("")
 
 }
-  return(
-    <div className="container"> 
-    <h1>Calculator App USing React</h1>
+// eslint-disable-next-line no-eval
+// const result = eval(input);
+   return (
+    <div className="container">
+      <h1>Calculator App Using React</h1>
 
-    <div className="calculator">
-      <input type="text" value={input} className="output"/>
-   <Keypad handleClick={handleClick} handleClear={handleClear} calculate={calculate}></Keypad>
-       </div>
-  </div>
-  )
+      <div className="calculator">
+        <input type="text" value={input} className="output" readOnly />
+        <Keypad
+          handleClick={handleClick}
+          handleClear={handleClear}
+          calculate={calculate}
+        />
+      </div>
+    </div>
+  );
 }
+
 export default App;
